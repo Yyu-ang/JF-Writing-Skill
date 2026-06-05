@@ -88,9 +88,9 @@ All patterns are extracted sentence by sentence from 144 published Journal of Fi
 
 ## Version History
 
-**v3.1.0** (June 5, 2026) — Three-tier AI-fingerprint defense system: Step 5 expanded from a 7-item scan to 12 phrase-level markers + 5 structural audit questions + 5 quantitative metrics. Anti-patterns expanded from 8 to 15 (7 new entries on structural symmetry). Added Caveats M-R to `usage-guide.md` covering the symmetry problem, high-trigger patterns and their fixes, quantitative audit metrics, imperfect writing as a defense, section-specific risk tables, and a 2-minute pre-submission check. Principles adapted from the structure-randomizer and deep-humanize approaches.
+**v1.0.0** (June 5, 2026) — Three-tier AI-fingerprint defense system: Step 5 expanded from a 7-item scan to 12 phrase-level markers + 5 structural audit questions + 5 quantitative metrics. Anti-patterns expanded from 8 to 15 (7 new entries on structural symmetry). Added Caveats M-R to `usage-guide.md` covering the symmetry problem, high-trigger patterns and their fixes, quantitative audit metrics, imperfect writing as a defense, section-specific risk tables, and a 2-minute pre-submission check. Principles adapted from the structure-randomizer and deep-humanize approaches.
 
-**v3.0.0** (June 5, 2026) — Modular rewrite: split the ~2,000-line monolithic SKILL.md into an orchestrator plus 5 reference files.
+**v0.9.9** (June 5, 2026) — Modular rewrite: split the ~2,000-line monolithic SKILL.md into an orchestrator plus 5 reference files.
 
 ---
 
