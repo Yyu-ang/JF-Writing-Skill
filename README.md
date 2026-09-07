@@ -1,125 +1,73 @@
-# journal-adapt-tunnelling
+# Civil & Tunnelling Engineering Writing Skill
 
-A corpus-grounded academic writing skill for **civil engineering, geotechnical engineering, tunnelling and underground-space research**.
+A modular academic-writing skill for **civil engineering, geotechnical engineering, tunnelling and underground-space engineering**.
 
-This adaptation keeps the strongest workflow idea from [`WantongC/journal-adapt-writing-skill`](https://github.com/WantongC/journal-adapt-writing-skill):
+This repository is adapted from the architecture of [`Ryyyyyyy233/JF-Writing-Skill`](https://github.com/Ryyyyyyy233/JF-Writing-Skill). It keeps the upstream design pattern — a lightweight `SKILL.md` orchestrator plus on-demand reference modules for sentence patterns, phrase choices, paragraph structures, meta-discourse and a polishing workflow — while replacing the Journal of Finance / financial-economics content with civil- and tunnelling-engineering guidance.
 
-> reference papers → per-paper Style Cards → corpus Style Profile → reviewable dynamic writing skill → section-by-section revision
+## Scope
 
-It replaces generic CS/software-oriented engineering defaults with analysis and writing rules for:
+The skill is designed for papers involving:
 
 - civil and geotechnical engineering;
-- tunnelling and underground space;
+- tunnelling and underground construction;
 - rock mechanics and engineering geology;
-- TBM / EPB / shield tunnelling;
+- TBM, shield and EPB tunnelling;
 - field monitoring and engineering case histories;
-- laboratory and physical model tests;
-- numerical simulation and computational mechanics;
-- constitutive modelling, FEM/FDM/DEM/MPM and coupled methods;
-- data-driven / ML methods used inside civil and tunnelling research.
+- laboratory and physical-model tests;
+- FEM/FDM/DEM/MPM and other numerical methods;
+- constitutive modelling and computational mechanics;
+- data-driven / machine-learning methods used for civil and tunnelling problems.
 
-## Typical target journals
-
-The workflow is corpus-driven and does not hard-code any venue. Typical writing destinations include:
-
-- *Tunnelling and Underground Space Technology*;
-- *Computers and Geotechnics*;
-- *International Journal of Rock Mechanics and Mining Sciences*;
-- *Rock Mechanics and Rock Engineering*;
-- *Engineering Geology*;
-- *Underground Space*;
-- *Transportation Geotechnics*;
-- other civil/geotechnical/tunnelling journals selected by the user.
-
-## How it works
+## Architecture
 
 ```text
-Target-journal papers + topic/method papers + optional author/lab exemplars
-                              ↓
-                     Paper Style Cards
-                              ↓
-                       Style Profile
-                              ↓
-                 dynamic_writing_skill.md
-                              ↓
-                       Human review
-                              ↓
-                 Section-by-section revision
-                              ↓
-                     Technical integrity check
+civil-tunnelling-skill-1.0.0/
+├── SKILL.md
+├── README-chinese.md
+├── README-english.md
+└── references/
+    ├── sentence-templates.md
+    ├── phrase-bank.md
+    ├── paragraph-patterns.md
+    ├── meta-discourse.md
+    └── usage-guide.md
 ```
 
-The dynamic skill is generated from the actual reference corpus. The bundled professional rules are fallbacks, not substitutes for target-journal evidence.
+The main skill diagnoses the section, research method and requested task, then loads only the relevant references. This mirrors the modular structure of the upstream JF skill while changing the professional content.
 
-## Professional base rules
+## Typical tasks
 
-```text
-skill/base_rules/
-├── civil_tunnelling_engineering.md
-├── geotechnical_experimental_field.md
-└── computational_mechanics_numerical.md
-```
+| Request | Main modules |
+|---|---|
+| Polish an Introduction | `sentence-templates.md` + `paragraph-patterns.md` |
+| Translate Chinese technical prose into academic English | `phrase-bank.md` + `usage-guide.md` |
+| Polish Methods for numerical simulation | `sentence-templates.md` + `meta-discourse.md` |
+| Improve Results/Discussion | `paragraph-patterns.md` + `meta-discourse.md` |
+| Audit a full paper | all five references |
+| Check terminology, units and evidence boundaries | `usage-guide.md` + `meta-discourse.md` |
 
-`civil_tunnelling_engineering.md` is always loaded.
+## Core principles
 
-The field/experimental supplement is used for laboratory tests, monitoring, site investigation, TBM operational data and case histories. The numerical supplement is used for FEM/FDM/DEM/MPM, constitutive models, multiphysics and computational-mechanics papers. Mixed-method papers may load both.
+1. **Technical truth outranks style.** Do not change equations, variables, units, numerical results, citations, geological conditions, machine parameters, boundary conditions or experimental facts for stylistic reasons.
+2. **Engineering evidence must remain traceable.** Distinguish measurement, input, derived quantity, numerical output, interpretation and human-entered labels.
+3. **Mechanistic writing is preferred to generic significance claims.** Describe what changes, by how much, under what conditions, and why the evidence supports the interpretation.
+4. **Do not turn civil papers into generic CS/ML papers.** Data-driven methods remain subordinate to the engineering problem, data provenance and deployment boundary.
+5. **Naturalness is checked by clarity and variation, not detector-gaming rules.** The fixed AI-detector-oriented thresholds and deliberate sentence-length randomization from the original JF skill are not carried into this adaptation.
+6. **Patterns are references, not compulsory templates.** Use only the structures that fit the actual argument and evidence.
 
-## Civil/tunnelling Style Card dimensions
+## Important limitation
 
-In addition to abstract, introduction, literature review, results and discussion, the skill can learn how a target corpus handles:
+The original JF repository reports patterns extracted from a large Journal of Finance corpus. This civil/tunnelling adaptation does **not** claim an equivalent journal-frequency corpus. Its engineering patterns are a discipline-oriented writing reference. If a manuscript targets a specific journal, its author guidelines and actual published papers should still be consulted.
 
-- engineering problem definition;
-- geological and site conditions;
-- construction, machine and support context;
-- laboratory / field instrumentation;
-- raw vs processed measurements and derived labels;
-- governing equations and constitutive models;
-- geometry, mesh/particles, boundary and initial conditions;
-- parameter provenance and units;
-- verification, validation and benchmarks;
-- convergence, sensitivity, stability and conservation checks;
-- engineering applicability and evidence-bounded interpretation.
+## Suggested triggers
 
-## Install
+- `隧道写作`
+- `土木写作`
+- `岩土写作`
+- `CTE-skill`
+- `tunnelling polish`
+- `geotechnical translate`
 
-For Claude Code:
+## License and attribution
 
-```bash
-mkdir -p ~/.claude/skills/journal-adapt-tunnelling
-cp -R skill/* ~/.claude/skills/journal-adapt-tunnelling/
-```
-
-For Codex, install or symlink the `skill/` directory into your custom skills directory when supported, or keep this repository open and ask Codex to follow `skill/SKILL.md`.
-
-## Invoke
-
-```text
-/journal-adapt-tunnelling
-```
-
-Example:
-
-```text
-Build a dynamic writing skill for a TUST manuscript using 8 target-journal papers,
-4 topic-similar tunnelling papers, and 3 published papers from my research group.
-The manuscript is a mixed TBM field-data and numerical study.
-```
-
-## Design principles
-
-1. **Technical truth has highest priority.** Numerical values, units, equations, notation, citations, geological conditions, machine/support parameters and test/model facts are preserved unless the user explicitly authorizes a technical edit.
-2. **Target-journal evidence outranks generic writing advice.** Recurring patterns in the reviewed primary corpus drive section structure and rhetorical choices.
-3. **Civil/tunnelling context stays primary.** A data-driven tunnel paper is not automatically rewritten as a generic ML paper.
-4. **No blanket anti-AI phrase blacklist.** A phrase is changed because it is empty, repetitive or inconsistent with the corpus—not because it appears on a generic list.
-5. **Reference papers teach structure, not sentences.** Corpus prose is not quoted or paraphrased into the manuscript.
-6. **Verification and validation stay distinct.** Numerical correctness and physical credibility are treated separately where relevant.
-
-## Repository provenance
-
-This repository currently contains the civil/tunnelling adaptation described above. Its Git history originates from the previously forked `JF-Writing-Skill` repository; the former finance-specific skill files have been removed from the current tree to avoid mixing unrelated writing systems.
-
-The dynamic journal-adaptation architecture is inspired by and adapted from [`WantongC/journal-adapt-writing-skill`](https://github.com/WantongC/journal-adapt-writing-skill). See `docs/CIVIL_TUNNELLING_ADAPTATION.md` for the professional design rationale.
-
-## License
-
-MIT. See `LICENSE`.
+The upstream repository is MIT licensed. This adaptation retains the existing MIT license and repository history. Architecture attribution: `Ryyyyyyy233/JF-Writing-Skill`.
