@@ -4,8 +4,6 @@ A modular academic-writing skill for **civil engineering, geotechnical engineeri
 
 This repository is adapted from the architecture of [`Ryyyyyyy233/JF-Writing-Skill`](https://github.com/Ryyyyyyy233/JF-Writing-Skill). It keeps the upstream design pattern — a lightweight `SKILL.md` orchestrator plus on-demand reference modules for sentence patterns, phrase choices, paragraph structures, meta-discourse and a polishing workflow — while replacing the Journal of Finance / financial-economics content with civil- and tunnelling-engineering guidance.
 
-> This project is **not** based on `WantongC/journal-adapt-writing-skill` and does not use its dynamic journal-corpus workflow.
-
 ## Scope
 
 The skill is designed for papers involving:
@@ -54,7 +52,7 @@ The main skill diagnoses the section, research method and requested task, then l
 2. **Engineering evidence must remain traceable.** Distinguish measurement, input, derived quantity, numerical output, interpretation and human-entered labels.
 3. **Mechanistic writing is preferred to generic significance claims.** Describe what changes, by how much, under what conditions, and why the evidence supports the interpretation.
 4. **Do not turn civil papers into generic CS/ML papers.** Data-driven methods remain subordinate to the engineering problem, data provenance and deployment boundary.
-5. **Naturalness is checked by clarity and variation, not detector-gaming rules.** The fixed GPTZero-oriented thresholds and deliberate sentence-length randomization from the original JF skill are not carried into this adaptation.
+5. **Naturalness is checked by clarity and variation, not detector-gaming rules.** The fixed AI-detector-oriented thresholds and deliberate sentence-length randomization from the original JF skill are not carried into this adaptation.
 6. **Patterns are references, not compulsory templates.** Use only the structures that fit the actual argument and evidence.
 
 ## Important limitation
