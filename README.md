@@ -1,99 +1,125 @@
-# JF-Writing-Skill
-A Journal of Finance style reference for academic writing in financial economics. Distilled from 144 JF papers (Continuously updated) published between 2022 and 2025. Covers sentence templates, collocations, paragraph structures, and a polishing workflow. Works for both English-language editing and Chinese-to-English translation.
+# journal-adapt-tunnelling
 
-# JF Writing Style Guide — Quick Start
+A corpus-grounded academic writing skill for **civil engineering, geotechnical engineering, tunnelling and underground-space research**.
 
-A Journal of Finance style reference for academic writing in financial economics. Distilled from 144 JF papers published between 2022 and 2025. Covers sentence templates, collocations, paragraph structures, and a polishing workflow. Works for both English-language editing and Chinese-to-English translation.
+This adaptation keeps the strongest workflow idea from [`WantongC/journal-adapt-writing-skill`](https://github.com/WantongC/journal-adapt-writing-skill):
 
----
+> reference papers → per-paper Style Cards → corpus Style Profile → reviewable dynamic writing skill → section-by-section revision
 
-## How to Activate
+It replaces generic CS/software-oriented engineering defaults with analysis and writing rules for:
 
-Type any keyword below into the conversation to trigger the skill:
+- civil and geotechnical engineering;
+- tunnelling and underground space;
+- rock mechanics and engineering geology;
+- TBM / EPB / shield tunnelling;
+- field monitoring and engineering case histories;
+- laboratory and physical model tests;
+- numerical simulation and computational mechanics;
+- constitutive modelling, FEM/FDM/DEM/MPM and coupled methods;
+- data-driven / ML methods used inside civil and tunnelling research.
 
-| Trigger | Example |
-|---------|---------|
-| `jf-skill` | `jf-skill help me polish this introduction` |
-| `JF风格` | `JF风格，把这段结果翻译成英文` |
-| `JF polish` | `jf polish my results section` |
-| `JF translate` | `JF translate this abstract` |
-| `JF style` | `apply JF style to my literature review` |
+## Typical target journals
 
-**What does NOT trigger the skill:** General grammar correction, style advice for non-finance journals, or purely structural feedback (those go through peer review).
+The workflow is corpus-driven and does not hard-code any venue. Typical writing destinations include:
 
----
+- *Tunnelling and Underground Space Technology*;
+- *Computers and Geotechnics*;
+- *International Journal of Rock Mechanics and Mining Sciences*;
+- *Rock Mechanics and Rock Engineering*;
+- *Engineering Geology*;
+- *Underground Space*;
+- *Transportation Geotechnics*;
+- other civil/geotechnical/tunnelling journals selected by the user.
 
-## What Happens When You Use It
+## How it works
 
-| You Say | The Skill Does | Reference Files Used |
-|---------|----------------|---------------------|
-| "polish introduction" | Matches JF opening sentences and paragraph structure | `sentence-templates.md` sections 1-5 |
-| "polish results" | Applies the Claim-Evidence-Interpretation paragraph model | `sentence-templates.md` sections 9-11 + `paragraph-patterns.md` sections 29-33 |
-| "translate abstract" | Chinese-to-English translation with JF phrase substitution and hedging calibration | `phrase-bank.md` |
-| "check full-paper writing style" | Scans for AI fingerprints (three-tier defense), over-hedging, and unnatural collocations | All 5 reference files |
-| "not sure how to start an introduction" | Offers 28 JF opening styles to choose from | `sentence-templates.md` section 1 |
-| "polish conclusion" | Applies JF conclusion templates and implication cascade | `sentence-templates.md` section 15 |
-| "rewrite a paragraph" | Matches the paragraph to one of 33 structural patterns | `paragraph-patterns.md` |
-
----
-
-## Architecture
-
-The skill uses a modular structure. The main file (`SKILL.md`) handles triggering, routing, and quality control. Examples, templates, and collocations live in the `references/` subdirectory and are loaded on demand.
-
-```
-jf-skill-1.0.0/
-├── SKILL.md                          ← Main file (triggers, mode selection, quality standards)
-└── references/
-    ├── sentence-templates.md         ← 21 categories of sentence patterns, with full examples and citations
-    ├── phrase-bank.md                ← Verb collocations, adjective pairs, hedging by confidence level, non-academic-to-JF substitutions
-    ├── paragraph-patterns.md         ← 33 paragraph structures with variants and worked examples
-    ├── meta-discourse.md             ← Templates for boundary setting, interpretive control, and layered analysis
-    └── usage-guide.md                ← 8-step polishing workflow, appendix templates, 18 caveats (A-R, including the three-tier AI-defense system)
+```text
+Target-journal papers + topic/method papers + optional author/lab exemplars
+                              ↓
+                     Paper Style Cards
+                              ↓
+                       Style Profile
+                              ↓
+                 dynamic_writing_skill.md
+                              ↓
+                       Human review
+                              ↓
+                 Section-by-section revision
+                              ↓
+                     Technical integrity check
 ```
 
----
+The dynamic skill is generated from the actual reference corpus. The bundled professional rules are fallbacks, not substitutes for target-journal evidence.
 
-## Workflow
+## Professional base rules
 
-Every time the skill is activated, it follows these steps:
+```text
+skill/base_rules/
+├── civil_tunnelling_engineering.md
+├── geotechnical_experimental_field.md
+└── computational_mechanics_numerical.md
+```
 
-1. **Diagnose** — Which part of the paper is this (introduction, results, conclusion, etc.)? Does the user want polishing, translation, or drafting help?
-2. **Load references** — Most tasks need only 1 or 2 reference files. Full-paper audits need all 5.
-3. **Apply patterns** — Match JF sentence types, substitute phrases, calibrate hedging intensity.
-4. **Polish** — Iterate, avoiding mechanical or rote substitution.
-5. **AI-fingerprint check (three-tier)** — Tier 1: scan for 12 phrase-level markers (words like "notably," "potentially," "Furthermore," plus hedging phrases that GPTZero has learned to flag). Tier 2: 5 structural self-audit questions (paragraph template diversity, whether the Introduction follows a rigid four-part structure, parallel subsection formatting, expressions of uncertainty, and whether the Conclusion re-lists contributions). Tier 3: 5 quantitative metrics (sentence-length standard deviation, connector-word density, share of extreme-length paragraphs, count of uncertainty expressions, and dominant template share).
+`civil_tunnelling_engineering.md` is always loaded.
 
----
+The field/experimental supplement is used for laboratory tests, monitoring, site investigation, TBM operational data and case histories. The numerical supplement is used for FEM/FDM/DEM/MPM, constitutive models, multiphysics and computational-mechanics papers. Mixed-method papers may load both.
 
-## Key Design Principles
+## Civil/tunnelling Style Card dimensions
 
-**This is a reference book, not a recipe book.** Every sentence pattern, collocation, and paragraph structure in the skill is *descriptive* (this is what JF authors actually do), not *prescriptive* (this is what you must do). The goal is to help you diagnose what your text is missing and see how published JF papers handle similar situations — not to override your own judgment.
+In addition to abstract, introduction, literature review, results and discussion, the skill can learn how a target corpus handles:
 
-**No single paper uses all the patterns.** Real JF papers draw on only a small subset. If a paper uses more than five distinctive collocations ("shed new light on," "bridge different strands," "demystify," etc.), it starts to read like it was AI-generated.
+- engineering problem definition;
+- geological and site conditions;
+- construction, machine and support context;
+- laboratory / field instrumentation;
+- raw vs processed measurements and derived labels;
+- governing equations and constitutive models;
+- geometry, mesh/particles, boundary and initial conditions;
+- parameter provenance and units;
+- verification, validation and benchmarks;
+- convergence, sensitivity, stability and conservation checks;
+- engineering applicability and evidence-bounded interpretation.
 
-**Hedging should match the strength of your evidence.** Vague claims get speculative language. Well-supported findings get confident language. Over-hedging damages credibility just as much as overclaiming.
+## Install
 
-**Journal conventions differ across outlets.** ALL CAPS openings, long enumerations, and "The remainder of the paper is organized as follows" are standard in JF. If you are submitting to the JPE, QJE, or Econometrica, check whether those conventions apply.
+For Claude Code:
 
-**AI detection is about structural symmetry, not word choice.** The right way to lower your AI-detection risk is not to swap out individual words. It is to break structural symmetry, inject uncertainty, and allow traces of imperfection. See `usage-guide.md`, Caveats M through R, for details.
+```bash
+mkdir -p ~/.claude/skills/journal-adapt-tunnelling
+cp -R skill/* ~/.claude/skills/journal-adapt-tunnelling/
+```
 
----
+For Codex, install or symlink the `skill/` directory into your custom skills directory when supported, or keep this repository open and ask Codex to follow `skill/SKILL.md`.
 
-## Data Source
+## Invoke
 
-All patterns are extracted sentence by sentence from 144 published Journal of Finance papers (2022–2025). Coverage includes asset pricing, corporate finance, banking, behavioral finance, household finance, international finance, and financial intermediation. Every example sentence is a direct quotation from a published JF article.
+```text
+/journal-adapt-tunnelling
+```
 
----
+Example:
 
-## Version History
+```text
+Build a dynamic writing skill for a TUST manuscript using 8 target-journal papers,
+4 topic-similar tunnelling papers, and 3 published papers from my research group.
+The manuscript is a mixed TBM field-data and numerical study.
+```
 
-**v1.0.0** (June 5, 2026) — Three-tier AI-fingerprint defense system: Step 5 expanded from a 7-item scan to 12 phrase-level markers + 5 structural audit questions + 5 quantitative metrics. Anti-patterns expanded from 8 to 15 (7 new entries on structural symmetry). Added Caveats M-R to `usage-guide.md` covering the symmetry problem, high-trigger patterns and their fixes, quantitative audit metrics, imperfect writing as a defense, section-specific risk tables, and a 2-minute pre-submission check. Principles adapted from the structure-randomizer and deep-humanize approaches.
+## Design principles
 
-**v0.9.9** (June 5, 2026) — Modular rewrite: split the ~2,000-line monolithic SKILL.md into an orchestrator plus 5 reference files.
+1. **Technical truth has highest priority.** Numerical values, units, equations, notation, citations, geological conditions, machine/support parameters and test/model facts are preserved unless the user explicitly authorizes a technical edit.
+2. **Target-journal evidence outranks generic writing advice.** Recurring patterns in the reviewed primary corpus drive section structure and rhetorical choices.
+3. **Civil/tunnelling context stays primary.** A data-driven tunnel paper is not automatically rewritten as a generic ML paper.
+4. **No blanket anti-AI phrase blacklist.** A phrase is changed because it is empty, repetitive or inconsistent with the corpus—not because it appears on a generic list.
+5. **Reference papers teach structure, not sentences.** Corpus prose is not quoted or paraphrased into the manuscript.
+6. **Verification and validation stay distinct.** Numerical correctness and physical credibility are treated separately where relevant.
 
----
+## Repository provenance
 
-## Acknowledgments
+This repository currently contains the civil/tunnelling adaptation described above. Its Git history originates from the previously forked `JF-Writing-Skill` repository; the former finance-specific skill files have been removed from the current tree to avoid mixing unrelated writing systems.
 
-Inspired by the modular architecture of [academic-research-skills](https://github.com/Imbad0202/academic-research-skills). The v3.1 AI-detection defense system builds on principles from structure-randomizer (using structural variance to evade detection) and deep-humanize (statistical analysis of detection-model dimensions).
+The dynamic journal-adaptation architecture is inspired by and adapted from [`WantongC/journal-adapt-writing-skill`](https://github.com/WantongC/journal-adapt-writing-skill). See `docs/CIVIL_TUNNELLING_ADAPTATION.md` for the professional design rationale.
+
+## License
+
+MIT. See `LICENSE`.
