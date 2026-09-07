@@ -1,20 +1,20 @@
 ---
 name: "civil-tunnelling-writing-style-guide"
-description: "Academic writing reference for civil engineering, geotechnical engineering, tunnelling and underground-space research. Supports polishing, Chinese-to-English technical translation, paragraph restructuring and full-paper style audits. Triggers on: 隧道写作, 土木写作, 岩土写作, CTE-skill, tunnelling polish, geotechnical translate."
+description: "Academic writing reference for civil engineering, geotechnical engineering, tunnelling and underground-space research. Supports polishing, Chinese-to-English technical translation, paragraph restructuring, full-paper style audits, and Zotero-based single-paper writing-style cards. Triggers on: 隧道写作, 土木写作, 岩土写作, CTE-skill, 文献风格卡, Zotero写作风格, WritingStyle.md, tunnelling polish, geotechnical translate."
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   status: active
   task_type: open-ended
   upstream_architecture: "Ryyyyyyy233/JF-Writing-Skill"
 ---
 
-# Civil & Tunnelling Engineering Writing Style Guide v1.0
+# Civil & Tunnelling Engineering Writing Style Guide v1.1
 
 A modular reference for drafting, translating and polishing academic prose in civil engineering, geotechnical engineering, tunnelling and underground-space research.
 
 The architecture is adapted from `Ryyyyyyy233/JF-Writing-Skill`: diagnose the task, load only the relevant references, apply patterns selectively, then perform a technical-integrity check.
 
-This skill is **not** a dynamic journal-corpus learner. It does not claim that its patterns were statistically extracted from a specific tunnelling journal.
+This skill is **not** a dynamic journal-corpus learner. It does not claim that its general patterns were statistically extracted from a specific tunnelling journal. The optional single-paper Zotero subskill can, however, distill a user-selected paper into a traceable `WritingStyle.md` style card.
 
 ---
 
@@ -25,15 +25,17 @@ This skill is **not** a dynamic journal-corpus learner. It does not claim that i
 岩土写作：把这段中文试验结果翻译成英文
 CTE-skill polish this numerical-method section
 geotechnical translate this discussion paragraph
+单篇文献写作风格卡：分析我 Zotero 里的这篇论文并生成 WritingStyle.md
 ```
 
 Execution flow:
 
-1. **Diagnose** — identify section, research method and requested operation.
-2. **Load references** — use only the modules needed for the task.
-3. **Protect technical content** — lock facts, units, symbols, equations, citations and numerical values.
-4. **Apply patterns** — improve structure, wording, evidence calibration and engineering logic.
-5. **Verify** — check technical integrity, terminology and evidence boundaries.
+1. **Route special subskills first** — a single-paper Zotero style-card request delegates to `subskills/single-paper-writing-style-card/SKILL.md`.
+2. **Diagnose** — identify section, research method and requested operation.
+3. **Load references** — use only the modules needed for the task.
+4. **Protect technical content** — lock facts, units, symbols, equations, citations and numerical values.
+5. **Apply patterns** — improve structure, wording, evidence calibration and engineering logic.
+6. **Verify** — check technical integrity, terminology and evidence boundaries.
 
 ---
 
@@ -41,11 +43,11 @@ Execution flow:
 
 ### Chinese
 
-`隧道写作`, `土木写作`, `岩土写作`, `隧道润色`, `岩土润色`, `隧道翻译`, `土木论文`, `CTE-skill`
+`隧道写作`, `土木写作`, `岩土写作`, `隧道润色`, `岩土润色`, `隧道翻译`, `土木论文`, `CTE-skill`, `单篇文献写作风格卡`, `文献风格卡`, `Zotero写作风格`, `生成WritingStyle.md`
 
 ### English
 
-`CTE-skill`, `tunnelling polish`, `tunnel writing`, `geotechnical writing`, `geotechnical translate`, `civil engineering polish`
+`CTE-skill`, `tunnelling polish`, `tunnel writing`, `geotechnical writing`, `geotechnical translate`, `civil engineering polish`, `single-paper style card`, `Zotero writing style`, `WritingStyle.md`
 
 ### Do not automatically use for
 
@@ -60,6 +62,7 @@ Execution flow:
 
 | User need | Mode | Main references |
 |---|---|---|
+| Generate a style card for one Zotero paper | Zotero single-paper style card | `subskills/single-paper-writing-style-card/SKILL.md` |
 | Polish Introduction | Introduction polish | `sentence-templates.md`, `paragraph-patterns.md` |
 | Polish Methods | Method polish | `sentence-templates.md`, `meta-discourse.md` |
 | Polish Results | Results polish | `paragraph-patterns.md`, `phrase-bank.md` |
@@ -69,6 +72,14 @@ Execution flow:
 | Improve abstract/conclusion | Synthesis polish | `sentence-templates.md`, `usage-guide.md` |
 | Full-paper audit | Full audit | all five reference files |
 | Check numerical/experimental credibility wording | Evidence-boundary audit | `meta-discourse.md`, `usage-guide.md` |
+
+### Subskill routing rule
+
+If the user's primary request is to analyze a specified local Zotero paper and create/update `WritingStyle.md`, **stop the generic polishing workflow and delegate to**:
+
+`subskills/single-paper-writing-style-card/SKILL.md`
+
+That subskill owns Zotero MCP lookup, AI-Butler MinerU cache detection, online MinerU fallback, style-card generation, Zotero attachment import, duplicate protection, and post-write verification.
 
 ---
 
@@ -117,10 +128,15 @@ These override all stylistic preferences.
 | `references/paragraph-patterns.md` | reusable paragraph architectures for engineering papers | restructuring paragraphs or sections |
 | `references/meta-discourse.md` | interpretation control, validity boundaries, data/model distinctions, limitations and layered analysis | careful discussion/validation wording |
 | `references/usage-guide.md` | end-to-end workflow and quality-control checklists | translation, full-paper audit, final pass |
+| `subskills/single-paper-writing-style-card/SKILL.md` | Zotero/MinerU workflow for distilling one paper into `WritingStyle.md` | single-paper style profiling |
 
 ---
 
 # Core Workflow
+
+## Step 0 — Route special tasks
+
+If the request is a Zotero single-paper style-card task, delegate to the subskill and follow its workflow instead of continuing below.
 
 ## Step 1 — Diagnose context
 
